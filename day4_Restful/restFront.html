@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>RESTful SERVER</title>
+  <link rel="stylesheet" href="./restFront.css" />
+</head>
+<body>
+<nav>
+  <a href="/">Home</a>
+  <a href="/about">About</a>
+</nav>
+<div>
+  <form id="form">
+    <input type="text" id="username">
+    <button type="submit">등록</button>
+  </form>
+  <h2>게시글 만들기</h2>
+  <form id="form2">
+    <div>제목</div>
+    <input type="text" id="tablename">
+    <div>내용</div>
+    <input type="text" id="tablecontent">
+    <button type="submit">등록</button>
+  </form>
+</div>
+<div id="list"></div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="./restFront.js"></script>
+</body>
+</html>

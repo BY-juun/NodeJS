@@ -1,0 +1,14 @@
+
+a { color: blue; text-decoration: none; }
+
+#tablename
+{
+    width: 500px;
+    margin-bottom: 15px;
+}
+
+#tablecontent
+{
+    width: 500px;
+    height: 300px;
+}
