@@ -9,7 +9,8 @@ http.createServer(async (req, res) => {
       if (req.url === '/') {
         const data = await fs.readFile('./restFront.html');
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-        return res.end(data);
+        res.write(data);
+        return res.end();
       } else if (req.url === '/about') {
         const data = await fs.readFile('./about.html');
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
