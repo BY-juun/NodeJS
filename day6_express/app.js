@@ -3,20 +3,30 @@ const path = require('path');
 const morgan = require('morgan');
 const app = express();
 const session = require('express-session');
+const dotenv = require('dotenv');
+dotenv.config();
 const multer = require('multer');
 const cookieParser = require("cookie-parser");
 
+const indexRouter = require('./routes');
+const userRouter = require('./routes/user');
+const { allowedNodeEnvironmentFlags } = require('process');
+
+
 app.set('port',process.env.PORT || 3000);
+
+app.set('views',path.join(__dirname,'views'));
+app.set('view engine','pug');
 
 app.use(morgan('dev'));
 app.use('/',express.static(path.join(__dirname,'public')));
-app.use(cookieParser("by_juun_password"));
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(session({
     resave : false,
     saveUninitialized : false,
-    secret : 'by_juun_password',
+    secret : process.env.COOKIE_SECRET,
     cookie : {
         httpOnly : true,
     },
@@ -24,6 +34,8 @@ app.use(session({
 }));
 app.use(multer().array());
 
+app.use('/',indexRouter);
+app.use('/user',userRouter);
 
 app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname,"index.html"));
