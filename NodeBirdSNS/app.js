@@ -6,7 +6,7 @@ const session = require('express-session');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 
-dotenv.config();
+dotenv.config(); //이 이후에 process.env사용가능 >> 따라서 dotenv.config()는 최대한 위에
 const pageRouter = require('./routes/page');
 
 const app = express();
