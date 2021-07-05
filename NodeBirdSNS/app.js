@@ -10,7 +10,9 @@ const passport = require('passport');
 dotenv.config(); //이 이후에 process.env사용가능 >> 따라서 dotenv.config()는 최대한 위에
 const pageRouter = require('./routes/page');
 const authRouter = require('./routes/auth');
+const postRouter = require('./routes/post');
 
+const passportConfig = require('./passport');
 
 const {sequelize} = require('./models');
 
@@ -32,8 +34,11 @@ sequelize.sync({force : false})
     console.error(err);
   })
 
+passportConfig();
+
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/img',express.static(path.join(__dirname, 'uploads')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
@@ -53,6 +58,7 @@ app.use(passport.session());
 
 app.use('/', pageRouter);
 app.use('/auth', authRouter);
+app.use('/post',postRouter);
 
 app.use((req, res, next) => {
   const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
