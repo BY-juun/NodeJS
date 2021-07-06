@@ -11,6 +11,7 @@ dotenv.config(); //이 이후에 process.env사용가능 >> 따라서 dotenv.con
 const pageRouter = require('./routes/page');
 const authRouter = require('./routes/auth');
 const postRouter = require('./routes/post');
+const userRouter = require('./routes/user');
 
 const passportConfig = require('./passport');
 
@@ -59,6 +60,7 @@ app.use(passport.session());
 app.use('/', pageRouter);
 app.use('/auth', authRouter);
 app.use('/post',postRouter);
+app.use('/user',userRouter);
 
 app.use((req, res, next) => {
   const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
