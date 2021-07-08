@@ -6,8 +6,8 @@ const User = require('../models/user');
 
 module.exports = () => {
   passport.use(new LocalStrategy({
-    usernameField: 'email',
-    passwordField: 'password',
+    usernameField: 'email', //req.body.email
+    passwordField: 'password', //req.body.password >> front에서 보내는게 바뀌면 얘네도 바껴야 한다.
   }, async (email, password, done) => {
     try {
       const exUser = await User.findOne({ where: { email } });

@@ -21,7 +21,7 @@ module.exports = () => {
         as: 'Followings',
       }],
     })
-      .then(user => done(null, user))
+      .then(user => done(null, user)) //이 이후에 req.user, req.isAuthenticated() 사용 가능.
       .catch(err => done(err));
   });
 
