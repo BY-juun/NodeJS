@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+{% for twit in twits %}
+<div class="twit">
+    <div class="twit-content">{{twit.content}}</div>
+    {% if twit.img %}
+    <div class="twit-img">
+        <img src="{{twit.img}}" alt="섬네일">
+    </div>
+    {% endif %}
+    <div>작성일자 : {{twit.createdAt}}</div>
+</div>
+{% endfor %}
+{% endblock %}

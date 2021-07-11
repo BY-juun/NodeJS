@@ -40,6 +40,19 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get('/Mypost', async (req, res, next) => {
+  try {
+    const User = await req.user;
+    const posts = await User.getPosts();
+    res.render('myPost', {
+      twits: posts,
+    });
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+});
+
 router.get('/hashtag', async (req, res, next) => {
   const query = req.query.hashtag;
   if (!query) {
