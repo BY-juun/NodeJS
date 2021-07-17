@@ -34,7 +34,8 @@ module.exports = (server, app, sessionMiddleware) => {
       chat: `${req.session.color}님이 입장하셨습니다.`,
     });
 
-    socket.on('disconnect', () => {
+    socket.on('disconnect', () => 
+    {
       console.log('chat 네임스페이스 접속 해제');
       socket.leave(roomId);
       const currentRoom = socket.adapter.rooms[roomId];

@@ -16,6 +16,12 @@ router.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile', { title: '내 정보 - NodeBird' });
 });
 
+
+router.get('/api/v1/employees',(req,res)=>{
+  console.log("dd");
+  res.send("[{/"/"}]");
+});
+
 router.get('/join', isNotLoggedIn, (req, res) => {
   res.render('join', { title: '회원가입 - NodeBird' });
 }); 
