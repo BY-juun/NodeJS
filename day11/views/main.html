@@ -37,7 +37,8 @@
               <button class="twit-unfollow">언팔로우하기</button>
             {% endif %}
             {% if twit.User.id === user.id %}
-              <button class="twit-unfollow">내가 쓴 글삭제하기</button>
+              <button id="remove-button">글삭제하기</button>
+              <button id="update-button">글수정하기</button>
             {% endif %}
             <div class="twit-content">{{twit.content}}</div>
             {% if twit.img %}
@@ -106,5 +107,16 @@
         }
       });
     });
+    
+    const remove_button = document.getElementById("remove-button");
+    remove_button.addEventListener("click",()=>{
+        const Post_id = document.querySelector('.twit-id').value;
+        axios.post(`/post/${Post_id}/remove/main`);
+    })
+
+    const update_button = document.getElementById("update-button");
+    update_button.addEventListener('click',()=>{
+        axios.post('/update');
+    })
   </script>
 {% endblock %}

@@ -40,10 +40,15 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.post('/update', async(req,res,next)=>{
+  res.render('Update');
+})
+
 router.get('/Mypost', async (req, res, next) => {
   try {
     const User = await req.user;
     const posts = await User.getPosts();
+    console.log(posts);
     res.render('myPost', {
       twits: posts,
     });
@@ -52,6 +57,7 @@ router.get('/Mypost', async (req, res, next) => {
     next(err);
   }
 });
+
 
 router.get('/hashtag', async (req, res, next) => {
   const query = req.query.hashtag;

@@ -1,0 +1,11 @@
+
+{% extends 'layout.html' %}
+{% block content %}
+  <div class="timeline">
+    <form id="join-form" action="/post/update" method="post">
+      <div class="input-group">
+        <label for="join-email">이메일</label>
+        <input id="join-email" type="text" name="content"></div>
+    </form>
+  </div>
+{% endblock %}

@@ -3,6 +3,7 @@
 {% block content %}
 {% for twit in twits %}
 <div class="twit">
+    <input type="hidden" value="{{twit.id}}" class="twit-id">
     <div class="twit-content">{{twit.content}}</div>
     {% if twit.img %}
     <div class="twit-img">
@@ -10,6 +11,16 @@
     </div>
     {% endif %}
     <div>작성일자 : {{twit.createdAt}}</div>
+    <button id = "remove-button">글 삭제</button>
 </div>
 {% endfor %}
+{% endblock %}
+{% block script %}
+<script>
+    const remove_button = document.getElementById("remove-button");
+    remove_button.addEventListener("click",()=>{
+        const Post_id = document.querySelector('.twit-id').value;
+        axios.post(`/post/${Post_id}/remove`);
+    })
+</script>
 {% endblock %}

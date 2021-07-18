@@ -33,6 +33,26 @@ router.post('/img', isLoggedIn, upload.single('img'), (req, res) => {
   res.json({ url: `/img/${req.file.filename}` });
 });
 
+router.post('/:id/remove',isLoggedIn, async(req,res,next)=>{
+  try{
+    await Post.destroy({where : {id : req.params.id}});
+    res.redirect('/Mypost');
+  }catch(error){
+    console.error(error);
+    next(error);
+  }
+})
+
+router.post('/:id/remove/main',isLoggedIn, async(req,res,next)=>{
+  try{
+    await Post.destroy({where : {id : req.params.id}});
+    res.redirect('/');
+  }catch(error){
+    console.error(error);
+    next(error);
+  }
+})
+
 const upload2 = multer();
 router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
   try {
